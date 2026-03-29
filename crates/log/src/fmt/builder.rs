@@ -1,6 +1,5 @@
 use crate::fmt::state::{State, Writers};
 use crate::fmt::writer::Writer;
-use std::any::Any;
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
 use std::thread::{spawn, JoinHandle};
@@ -17,7 +16,7 @@ impl Builder {
         }
     }
 
-    pub fn writer<T: Writer + Send + Sync + 'static>(mut self, writer: T) -> Self {
+    pub fn writer<T: Writer + Send + 'static>(mut self, writer: T) -> Self {
         self.writers.push(Box::new(writer));
         self
     }
@@ -55,10 +54,10 @@ pub struct Handle {
 }
 
 impl Handle {
-    pub fn stop(self) -> Result<(), Box<dyn Any + Send + 'static>> {
+    pub fn stop(self) {
         self.stop_token.store(false, Ordering::Release);
-        self.join_handle.join()?;
-        
-        Ok(())
+
+        // ignore: it's assumed that the logging thread will not be panic
+        let _ = self.join_handle.join();
     }
 }

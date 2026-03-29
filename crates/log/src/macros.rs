@@ -4,18 +4,18 @@ macro_rules! event {
         panic!($msg);
     };
 
-    (@tail $level:ident $msg:literal) => {};
+    (@tail $verbosity:ident $msg:literal) => {};
 
-    ($force:literal $level:ident $msg:literal $(, $name:ident = $value:expr)*) => {
+    ($force:literal $verbosity:ident $msg:literal $(, $name:ident = $value:expr)*) => {
         {
             #[allow(unused_imports)]
-            use $crate::prelude::{Event, Level, Field, event, write, should_write};
+            use $crate::prelude::{Event, Verbosity, Field, event, write, should_write};
             use $crate::value::to_value;
 
-            if should_write(Level::$level) {
+            if should_write(Verbosity::$verbosity) {
                 write(
                     Event::new(
-                        Level::$level,
+                        Verbosity::$verbosity,
                         module_path!(),
                         format!($msg),
                         [
@@ -31,7 +31,7 @@ macro_rules! event {
                 );
             }
 
-            event!(@tail $level $msg);
+            event!(@tail $verbosity $msg);
         }
     };
 }

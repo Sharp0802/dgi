@@ -8,7 +8,7 @@ use std::sync::atomic::{AtomicUsize, Ordering};
 
 #[derive(Serialize_repr, Copy, Clone, Eq, PartialEq, Ord, PartialOrd)]
 #[repr(u8)]
-pub enum Level {
+pub enum Verbosity {
     Fatal,
     Error,
     Warn,
@@ -16,7 +16,7 @@ pub enum Level {
     Debug,
 }
 
-impl Level {
+impl Verbosity {
     pub fn all() -> &'static [Self] {
         &[
             Self::Fatal,
@@ -37,7 +37,7 @@ pub struct Field {
 #[derive(Serialize)]
 pub struct Event {
     pub timestamp: DateTime<Utc>,
-    pub level: Level,
+    pub verbosity: Verbosity,
     pub thread_id: usize,
     pub module: &'static str,
     pub message: String,
@@ -55,10 +55,10 @@ fn get_tid() -> usize {
 }
 
 impl Event {
-    pub fn new(level: Level, module: &'static str, message: String, fields: Vec<Field>) -> Self {
+    pub fn new(verbosity: Verbosity, module: &'static str, message: String, fields: Vec<Field>) -> Self {
         Self {
             timestamp: Utc::now(),
-            level,
+            verbosity,
             thread_id: get_tid(),
             module,
             message,

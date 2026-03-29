@@ -1,32 +1,32 @@
 use std::cell::RefCell;
-use crate::event::{Event, Level};
+use crate::event::{Event, Verbosity};
 use crate::fmt::writer::Writer;
 use std::io::Write;
 use std::ops::DerefMut;
 use crate::error;
 
 pub struct Json<W: Write> {
-    max_level: Level,
+    max_verbosity: Verbosity,
     file: RefCell<W>,
 }
 
 impl<W: Write> Json<W> {
     pub const fn new(file: W) -> Self {
         Self {
-            max_level: Level::Info,
+            max_verbosity: Verbosity::Info,
             file: RefCell::new(file),
         }
     }
     
-    pub const fn max_level(mut self, max_level: Level) -> Self {
-        self.max_level = max_level;
+    pub const fn max_verbosity(mut self, max_verbosity: Verbosity) -> Self {
+        self.max_verbosity = max_verbosity;
         self
     }
 }
 
 impl<W: Write> Writer for Json<W> {
-    fn enabled_for(&self, level: Level) -> bool {
-        level <= self.max_level
+    fn enabled_for(&self, verbosity: Verbosity) -> bool {
+        verbosity <= self.max_verbosity
     }
 
     fn write(&self, event: &Event) {

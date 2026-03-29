@@ -1,4 +1,4 @@
-use crate::event::{Event, Level};
+use crate::event::{Event, Verbosity};
 use crate::fmt::builder::Builder;
 use crate::fmt::state::State;
 use std::sync::mpsc::TrySendError;
@@ -34,6 +34,6 @@ pub fn write(event: Event, force: bool) {
     panic!("channel disconnected");
 }
 
-pub fn should_write(level: Level) -> bool {
-    State::get().max_level >= level
+pub fn should_write(verbosity: Verbosity) -> bool {
+    State::get().max_verbosity >= verbosity
 }

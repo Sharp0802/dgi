@@ -4,7 +4,7 @@ use dgi_shell::app::App;
 
 fn main() {
     let logger = builder()
-        .writer(Console::new().max_level(Level::Debug))
+        .writer(Console::new().max_verbosity(Verbosity::Debug))
         .run()
         .unwrap();
 

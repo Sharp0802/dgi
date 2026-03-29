@@ -389,6 +389,7 @@ name = "dgi-test"
 version = "0.1.0"
 dependencies = [
  "dgi-log",
+ "dgi-shell",
 ]
 
 [[package]]

@@ -5,3 +5,4 @@ edition = "2024"
 
 [dependencies]
 dgi-log = { path = "../log" }
+dgi-shell = { path = "../shell" }

@@ -1,5 +1,6 @@
 [workspace]
 members = [
+    "crates/all",
     "crates/log",
     "crates/shell",
     "crates/test"

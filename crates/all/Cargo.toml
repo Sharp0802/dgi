@@ -1,0 +1,8 @@
+[package]
+name = "dgi"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+dgi-log = { path = "../log" }
+dgi-shell = { path = "../shell" }

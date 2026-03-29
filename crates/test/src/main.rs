@@ -1,6 +1,6 @@
-use dgi_log::impls::Console;
-use dgi_log::prelude::*;
-use dgi_shell::app::App;
+use dgi::log::impls::Console;
+use dgi::log::prelude::*;
+use dgi::shell::app::App;
 
 fn main() {
     let logger = builder()

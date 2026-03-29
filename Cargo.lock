@@ -362,6 +362,14 @@ dependencies = [
 ]
 
 [[package]]
+name = "dgi"
+version = "0.1.0"
+dependencies = [
+ "dgi-log",
+ "dgi-shell",
+]
+
+[[package]]
 name = "dgi-log"
 version = "0.1.0"
 dependencies = [
@@ -388,8 +396,7 @@ dependencies = [
 name = "dgi-test"
 version = "0.1.0"
 dependencies = [
- "dgi-log",
- "dgi-shell",
+ "dgi",
 ]
 
 [[package]]

@@ -3,8 +3,12 @@ name = "dgi-shell"
 version = "0.1.0"
 edition = "2024"
 
+description = "Shell system of DGI (https://github.com/Sharp0802/dgi)"
+license = "Apache-2.0"
+repository = "https://github.com/Sharp0802/dgi"
+
 [dependencies]
-dgi-log = { path = "../log" }
+dgi-log = { version = "0.1.0", path = "../log" }
 winit = "0.30.13"
 wgpu = "29.0.0"
 thiserror = "2.0.18"

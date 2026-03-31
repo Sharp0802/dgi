@@ -482,7 +482,7 @@ dependencies = [
 
 [[package]]
 name = "dgi"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "dgi-log",
  "dgi-shell",
@@ -506,7 +506,6 @@ name = "dgi-shell"
 version = "0.2.0"
 dependencies = [
  "dgi-log",
- "msgbox",
  "pollster",
  "serde",
  "thiserror 2.0.18",

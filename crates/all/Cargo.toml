@@ -1,6 +1,6 @@
 [package]
 name = "dgi"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 
 description = "Declarative Graphical Interface in Rust"
@@ -8,5 +8,5 @@ license = "Apache-2.0"
 repository = "https://github.com/Sharp0802/dgi"
 
 [dependencies]
-dgi-log = { version = "0.1.0", path = "../log" }
-dgi-shell = { version = "0.1.0", path = "../shell" }
+dgi-log = { version = "0.2.0", path = "../log" }
+dgi-shell = { version = "0.2.0", path = "../shell" }

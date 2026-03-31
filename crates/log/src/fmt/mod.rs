@@ -1,15 +1,13 @@
 use crate::event::{Event, Verbosity};
-use crate::fmt::builder::Builder;
-use crate::fmt::state::State;
 use std::sync::mpsc::TrySendError;
 
 mod builder;
 mod state;
+mod writer;
 
-pub mod writer;
-
-pub use crate::macros::*;
-
+pub use builder::*;
+pub use state::*;
+pub use writer::*;
 
 pub fn builder() -> Builder {
     Builder::new()

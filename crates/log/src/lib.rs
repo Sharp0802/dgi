@@ -17,4 +17,6 @@ pub mod prelude {
     pub use super::assert::*;
     pub use super::event::*;
     pub use super::fmt::*;
+    pub use super::ser::*;
+    pub use super::macros::*;
 }

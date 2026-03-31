@@ -1,6 +1,6 @@
 use std::cell::RefCell;
 use crate::event::{Event, Verbosity};
-use crate::fmt::writer::Writer;
+use crate::fmt::Writer;
 use std::io::Write;
 use std::ops::DerefMut;
 use crate::error;

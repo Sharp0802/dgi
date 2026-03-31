@@ -1,5 +1,7 @@
 mod console;
 mod json;
+mod alert;
 
-pub use console::Console;
-pub use json::Json;
+pub use console::*;
+pub use json::*;
+pub use alert::*;

@@ -1,5 +1,5 @@
 use crate::event::{Event, Verbosity};
-use crate::fmt::writer::Writer;
+use crate::fmt::Writer;
 use crate::ser::json::Pretty;
 
 pub struct Console {

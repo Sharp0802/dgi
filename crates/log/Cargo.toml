@@ -1,6 +1,6 @@
 [package]
 name = "dgi-log"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2024"
 
 description = "Logging system of DGI (https://github.com/Sharp0802/dgi)"
@@ -14,3 +14,4 @@ serde_repr = "0.1.20"
 serde_json = "1.0.149"
 thread-id = "5.1.0"
 dashmap = "6.1.0"
+msgbox = "0.7.0"

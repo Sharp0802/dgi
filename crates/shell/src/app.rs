@@ -1,3 +1,6 @@
+use crate::resource::context::*;
+use dgi_log::impls::{Alert, Console};
+use dgi_log::prelude::{Handle, Verbosity, builder};
 use dgi_log::{expect, info, warn};
 use pollster::block_on;
 use std::sync::Arc;
@@ -5,15 +8,24 @@ use winit::application::ApplicationHandler;
 use winit::event::WindowEvent;
 use winit::event_loop::{ActiveEventLoop, ControlFlow, EventLoop};
 use winit::window::{Window, WindowId};
-use crate::abs::surface::Surface;
 
 pub struct App {
-    state: Option<Surface>,
+    context: Option<Context>,
+    logger: Option<Handle>,
 }
 
 impl App {
     pub fn new() -> Self {
-        Self { state: None }
+        let logger = builder()
+            .writer(Console::new().max_verbosity(Verbosity::Debug))
+            .writer(Alert::new())
+            .run()
+            .unwrap();
+
+        Self {
+            context: None,
+            logger: Some(logger),
+        }
     }
 
     pub fn run(mut self) {
@@ -40,11 +52,22 @@ impl ApplicationHandler for App {
 
         let window = Arc::new(window);
 
-        let state = expect!(
-            block_on(Surface::new(window.clone())),
-            "failed to initialize state"
+        let context = expect!(
+            block_on(Context::new(
+                window.clone(),
+                Config {
+                    cold: ColdConfig {
+                        debug: false,
+                        power_preference: Default::default(),
+                        memory_hints: MemoryPreference::Performance,
+                        adapter: None,
+                    },
+                    hot: HotConfig { vsync: false },
+                }
+            )),
+            "failed to initialize context"
         );
-        self.state = Some(state);
+        self.context = Some(context);
 
         window.request_redraw();
     }
@@ -55,7 +78,7 @@ impl ApplicationHandler for App {
         _window_id: WindowId,
         event: WindowEvent,
     ) {
-        let Some(state) = self.state.as_mut() else {
+        let Some(state) = self.context.as_mut() else {
             warn!("state is not yet initialized; ignoring event...");
             return;
         };
@@ -63,11 +86,13 @@ impl ApplicationHandler for App {
         match event {
             WindowEvent::CloseRequested => {
                 info!("close requested; exiting...");
+
+                self.logger.take().unwrap().stop();
                 event_loop.exit();
             }
 
             WindowEvent::RedrawRequested => {
-                state.render(&[]);
+                state.render(&[]).unwrap();
             }
 
             WindowEvent::Resized(size) => {

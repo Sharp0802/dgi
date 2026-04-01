@@ -1,6 +1,6 @@
 [package]
 name = "dgi-shell"
-version = "0.2.0"
+version = "0.2.1"
 edition = "2024"
 
 description = "Shell system of DGI (https://github.com/Sharp0802/dgi)"
@@ -8,7 +8,7 @@ license = "Apache-2.0"
 repository = "https://github.com/Sharp0802/dgi"
 
 [dependencies]
-dgi-log = { version = "0.2.0", path = "../log" }
+dgi-log = { version = "0.2.1", path = "../log" }
 winit = "0.30.13"
 wgpu = { version = "29.0.1", features = ["serde"] }
 thiserror = "2.0.18"

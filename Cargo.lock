@@ -482,7 +482,7 @@ dependencies = [
 
 [[package]]
 name = "dgi"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "dgi-log",
  "dgi-shell",
@@ -490,7 +490,7 @@ dependencies = [
 
 [[package]]
 name = "dgi-log"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "chrono",
  "dashmap",
@@ -503,7 +503,7 @@ dependencies = [
 
 [[package]]
 name = "dgi-shell"
-version = "0.2.0"
+version = "0.2.1"
 dependencies = [
  "dgi-log",
  "pollster",

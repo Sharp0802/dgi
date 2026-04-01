@@ -6,6 +6,7 @@ edition = "2024"
 description = "Declarative Graphical Interface in Rust"
 license = "Apache-2.0"
 repository = "https://github.com/Sharp0802/dgi"
+readme = "../../README.md"
 
 [dependencies]
 dgi-log = { version = "0.2.0", path = "../log" }
